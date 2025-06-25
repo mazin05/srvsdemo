@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRVS National School - Excellence in Education</title>
+    <!-- Tailwind CSS CDN for modern and responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for enhanced typography. Poppins for general text, Roboto for headings. -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for global font application and animation keyframes */
+        body {
+            font-family: 'Poppins', sans-serif; /* Applies Poppins to all body text */
+            overflow-x: hidden; /* Prevents horizontal scrollbars often caused by animations */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto', sans-serif; /* Applies Roboto to all headings */
+        }
+
+        /* Scroll Reveal Animation: Elements start invisible and slide up */
+        .scroll-reveal {
+            opacity: 0; /* Initially hidden */
+            transform: translateY(50px); /* Starts 50px below its final position */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition for both properties */
+        }
+        .scroll-reveal.active {
+            opacity: 1; /* Becomes visible */
+            transform: translateY(0); /* Moves to its final position */
+        }
+
+        /* Hero Section Specific Animations: These animations trigger on page load */
+        .hero-title {
+            animation: fadeInScale 1.5s ease-out forwards; /* Title fades in and scales up */
+        }
+        .hero-subtitle {
+            animation: fadeIn 2s ease-out 0.5s forwards; /* Subtitle fades in after a delay */
+            opacity: 0; /* Start hidden for animation */
+        }
+        .hero-button {
+            animation: fadeInSlideUp 1.5s ease-out 1s forwards; /* Button fades in and slides up after a longer delay */
+            opacity: 0; /* Start hidden for animation */
+            transform: translateY(20px);
+        }
+
+        /* Keyframes for Hero Section Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9); /* Starts slightly smaller */
+            }
+            to {
+                opacity: 1;
+                transform: scale(1); /* Ends at normal size */
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card Hover Effect: Applied to various cards like academic programs, life features, news, and testimonials */
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover */
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px); /* Lifts the card slightly */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+        }
+
+        /* Responsive Video Container: Ensures embedded videos maintain a 16:9 aspect ratio */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio (height / width = 9 / 16 = 0.5625) */
+            height: 0; /* Required for the padding-bottom trick */
+            overflow: hidden;
+            background-color: #000; /* Fallback background for video area */
+        }
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Dropdown specific styles */
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Show dropdown menu on hover for desktop */
+            animation: fadeIn 0.2s ease-out forwards; /* Smooth fade-in for dropdown */
+        }
+        /* Adjusted for 100% width */
+        .dropdown-menu {
+            transition: all 0.2s ease-out; /* Smooth transition for dropdown items */
+            width: 100%; /* Make dropdown menu take full width */
+        }
+        .dropdown-menu a {
+            padding: 8px 16px;
+            display: block;
+            /* Removed white-space: nowrap; to allow text to wrap within the full-width dropdown item */
+            font-size: 0.95rem; /* Slightly smaller font for sub-items */
+        }
+        /* Style for mobile dropdowns (initially hidden) */
+        .mobile-dropdown-menu {
+            display: none; /* Hidden by default */
+            transition: max-height 0.3s ease-out; /* Smooth height transition */
+            max-height: 0; /* Initial height for collapse animation */
+            overflow: hidden;
+        }
+        .mobile-dropdown-menu.active {
+            max-height: 200px; /* Adjust as needed based on content */
+            display: block; /* Show when active */
+        }
+        .mobile-dropdown-toggle svg {
+            transition: transform 0.3s ease-out;
+        }
+        .mobile-dropdown-toggle.active svg {
+            transform: rotate(90deg); /* Rotate arrow when dropdown is open */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section: Your provided header code, integrated and functional -->
+    <header class="bg-white shadow-md py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <!-- Top Navbar Row: Contains logo and top-right navigation links -->
+            <div class="flex justify-between items-center mb-2 md:mb-0">
+                <!-- School Logo and Name: Adapted for responsiveness -->
+                <a href="index.html" class="flex items-center gap-2 transition duration-300 ease-in-out rounded-md">
+                    <img src="https://www.srvskaraikal.in/srvs_logo.png" alt="SRVS National School Logo" class="h-16 md:h-20 w-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/100x100/A0A0A0/FFFFFF?text=SRVS';">
+                    <div class="flex flex-col md:flex-row md:items-baseline md:gap-1">
+                        <span class="text-xl md:text-2xl lg:text-2xl font-bold text-indigo-700">SRVS National</span>
+                        <!-- "HR SEC SCHOOL" visible only on desktop -->
+                        <span class="hidden md:inline text-xl md:text-2xl lg:text-2xl font-bold text-indigo-700">Hr. Sec. School (CBSE)</span>
+                    </div>
+                </a>
+                <!-- Top Right Links (hidden on mobile, visible on medium screens and up) -->
+                <nav class="hidden md:flex space-x-4 text-sm lg:text-base">
+                    <a href="publicdis.html" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-indigo-50">Public Disclosure</a>
+                    <a href="alumni.html" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-indigo-50">SRVS Family</a>
+                    <a href="elite.html" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-indigo-50">Elite Academy</a>
+                    <a href="360.html" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-indigo-50">360°</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-2 py-1 rounded-md hover:bg-indigo-50">Contact Us</a>
+                </nav>
+                <!-- Mobile Menu Button (visible only on mobile) -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none rounded-md p-1">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Bottom Navbar Row (Main Navigation - hidden on mobile, visible on medium screens and up) -->
+            <!-- Adjusted to be centered and span full width -->
+            <div class="hidden md:flex justify-center w-full mt-2 pt-2 border-t border-gray-100">
+                <nav class="flex justify-evenly w-full text-lg"> <!-- flex and justify-evenly ensure horizontal and spacing -->
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50">Home</a>
+
+                    <!-- Academics Dropdown -->
+                    <div class="relative dropdown">
+                        <button class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50 flex items-center">
+                            Academics
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md w-full z-10 py-1 border border-gray-100">
+                            <a href="academics/balvatika.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Balvatika</a>
+                            <a href="academics/primary.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Primary School</a>
+                            <a href="academics/middle.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Middle School</a>
+                            <a href="academics/high.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">High School</a>
+                            <a href="academics/highsec.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Curriculum</a>
+                            <a href="academics/goals.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Goals</a>
+                            <a href="academics/co-scholastic.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Co-Curricular</a>
+                        </div>
+                    </div>
+
+                    <!-- Admissions Link (No Dropdown for simplicity, as per previous structure) -->
+                    <a href="admission.html" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50">Admissions</a>
+
+                    <!-- About Us Dropdown -->
+                    <div class="relative dropdown">
+                        <button class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50 flex items-center">
+                            About Us
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md w-full z-10 py-1 border border-gray-100">
+                            <a href="about/history.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Our History</a>
+                            <a href="about/message.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Our History</a>
+                            <a href="about/eduteam.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Leadership Team</a>
+                            <a href="about/facility.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Facilities</a>
+                            <a href="about/labs.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Labs</a>
+                        </div>
+                    </div>
+
+                    <!-- Life @ SRVS Dropdown -->
+                    <div class="relative dropdown">
+                        <button class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50 flex items-center">
+                            Life @ SRVS
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md w-full z-10 py-1 border border-gray-100">
+                            <a href="life/health.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Health & Counselling</a>
+                            <a href="life/pastoral.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Pastoral</a>
+                            <a href="life/safety.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Student Safety</a>
+                            <a href="life/house.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Houses</a>
+                            <a href="life/creative.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Creative Arts</a>
+                        </div>
+                    </div>
+
+                    <a href="careers.html" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50">Careers</a>
+
+                    <!-- Policies Dropdown -->
+                    <div class="relative dropdown">
+                        <button class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300 ease-in-out px-3 py-2 rounded-md hover:bg-indigo-50 flex items-center">
+                            Policies
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md w-full z-10 py-1 border border-gray-100">
+                            <a href="policy/admission.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Admission Policy</a>
+                            <a href="policy/language.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">Language Policy</a>
+                            <a href="policy/nohomework.html" class="text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-md block">No Homework Policy</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay: Appears when mobile menu button is clicked -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white bg-opacity-95 z-50 overflow-y-auto">
+            <div class="flex justify-end p-6">
+                <!-- Close mobile menu button -->
+                <button id="close-mobile-menu" class="text-gray-700 focus:outline-none rounded-md p-1">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Navigation Links: Full-height list of links with dropdowns -->
+            <nav class="flex flex-col items-center space-y-6 text-xl pb-10">
+                <a href="./index.html" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">Home</a>
+
+                <!-- Mobile Academics Dropdown -->
+                <div class="w-full text-center">
+                    <button class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md flex items-center justify-center mobile-dropdown-toggle w-full" data-target="academics-mobile-menu">
+                        Academics
+                        <svg class="w-5 h-5 ml-2 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div id="academics-mobile-menu" class="mobile-dropdown-menu bg-indigo-50 rounded-md mt-2 w-full">
+                        <a href="./academics/balvatika.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Balvatika</a>
+                        <a href="./academics/primary.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Primary School</a>
+                        <a href="./academics/middle.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Middle School</a>
+                        <a href="./academics/high.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">High School</a>
+                        <a href="./academics/highsec.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Higher Secondary</a>
+                        <a href="./academics/goals.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Goals</a>
+                        <a href="./academics/co-scholastic.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Co-Scholastic</a>
+                    </div>
+                </div>
+
+                <a href="" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">Admissions</a>
+
+                <!-- Mobile About Us Dropdown -->
+                <div class="w-full text-center">
+                    <button class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md flex items-center justify-center mobile-dropdown-toggle w-full" data-target="about-mobile-menu">
+                        About Us
+                        <svg class="w-5 h-5 ml-2 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div id="about-mobile-menu" class="mobile-dropdown-menu bg-indigo-50 rounded-md mt-2 w-full">
+                        <a href="./about/history.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Our History</a>
+                        <a href="./about/message.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Messages</a>
+                        <a href="./about/eduteam.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Leadership Team</a>
+                        <a href="./about/facility.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Facilities</a>
+                        <a href="./about/labs.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Labs</a>
+                   
+                    </div>
+                </div>
+
+                <!-- Mobile Life @ SRVS Dropdown -->
+                <div class="w-full text-center">
+                    <button class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md flex items-center justify-center mobile-dropdown-toggle w-full" data-target="life-mobile-menu">
+                        Life @ SRVS
+                        <svg class="w-5 h-5 ml-2 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div id="life-mobile-menu" class="mobile-dropdown-menu bg-indigo-50 rounded-md mt-2 w-full">
+                        <a href="./life/health.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Health & Counselling</a>
+                        <a href="./life/pastoral.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Pastoral</a>
+                        <a href="./life/safety.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Student Safety</a>
+                        <a href="./life/house.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Houses</a>
+                        <a href="./life/creative.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Creative</a>
+                    </div>
+                </div>
+
+                <a href="" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">Careers</a>
+
+                <!-- Mobile Policies Dropdown -->
+                <div class="w-full text-center">
+                    <button class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md flex items-center justify-center mobile-dropdown-toggle w-full" data-target="policies-mobile-menu">
+                        Policies
+                        <svg class="w-5 h-5 ml-2 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <div id="policies-mobile-menu" class="mobile-dropdown-menu bg-indigo-50 rounded-md mt-2 w-full">
+                        <a href="./policy/admission.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">Admission Policy</a>
+                        <a href="./policy/language.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">language Policy</a>
+                        <a href="./policy/nohomework.html" class="text-gray-700 hover:bg-indigo-100 hover:text-indigo-700 rounded-md block py-2 px-4 text-base" onclick="toggleMobileMenu()">No Hpmework policy</a>
+                    </div>
+                </div>
+
+                <a href="./contact.html" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">Contact Us</a>
+                <a href="./publicdis.html" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">Public Disclosure</a>
+                <a href="./alumni.html" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">SRVS Family</a>
+                <a href="./elite.html" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">Elite Academy</a>
+                <a href="./360.html" class="text-gray-800 hover:text-indigo-600 transition duration-300 ease-in-out py-2 px-4 rounded-md" onclick="toggleMobileMenu()">360°</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section: Full-height section with a background image and animated text/button -->
+        <section id="home" class="relative bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('./img/school_full.jpg');">
+            <!-- Overlay for better text readability -->
+            <div class="absolute inset-0 bg-indigo-900 opacity-70"></div>
+            <div class="container mx-auto px-6 text-center z-10">
+                <h1 class="hero-title text-5xl md:text-6xl font-extrabold leading-tight mb-4 drop-shadow-lg">
+                    Empowering Minds, Shaping Futures
+                </h1>
+                <p class="hero-subtitle text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">
+                    Welcome to SRVS National School, where excellence in education meets holistic development.
+                </p>
+                <a href="#admissions" class="hero-button bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 inline-block">
+                    Admissions Open!
+                </a>
+            </div>
+        </section>
+
+        <!-- About Us Section: Introduces the school with text and an image, using scroll-reveal animation -->
+        <section id="about" class="py-16 bg-gray-50 scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-indigo-800 mb-8">About SRVS National School</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <div class="md:w-1/2 text-left">
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                            SRVS National School is committed to providing a nurturing and stimulating environment where every child can achieve their full potential. Our comprehensive curriculum, experienced faculty, and state-of-the-art facilities ensure a well-rounded educational experience.
+                        </p>
+                        <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                            We focus on fostering critical thinking, creativity, and strong moral values, preparing students not just for academic success, but for life. Join our community and be part of a legacy of excellence.
+                        </p>
+                        <a href="#public-disclosure" class="text-indigo-600 hover:text-indigo-800 font-semibold transition duration-300 ease-in-out rounded-md">
+                            Learn More About Our Vision <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                    <div class="md:w-1/2">
+                        <img src="https://placehold.co/600x400/80B3FF/FFFFFF?text=School+Building" alt="School Building" class="rounded-lg shadow-xl card-hover-effect w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academics Section: Displays academic programs in a grid with hover effects and scroll-reveal -->
+        <section id="academics" class="py-16 bg-white scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-indigo-800 mb-12">Our Academic Programs</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Program Card 1: Kindergarten -->
+                    <div class="bg-indigo-50 p-8 rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Kindergarten</h3>
+                        <p class="text-gray-700 mb-4">
+                            Play-based learning for early childhood development, focusing on foundational skills and social-emotional growth.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Details →</a>
+                    </div>
+                    <!-- Program Card 2: Primary School -->
+                    <div class="bg-indigo-50 p-8 rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Primary School</h3>
+                        <p class="text-gray-700 mb-4">
+                            A strong curriculum in core subjects with emphasis on critical thinking and creative expression.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Details →</a>
+                    </div>
+                    <!-- Program Card 3: Middle School -->
+                    <div class="bg-indigo-50 p-8 rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Middle School</h3>
+                        <p class="text-gray-700 mb-4">
+                            Transition to advanced subjects, fostering independence and preparing for higher studies.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Details →</a>
+                    </div>
+                    <!-- Program Card 4: High School -->
+                    <div class="bg-indigo-50 p-8 rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4">High School</h3>
+                        <p class="text-gray-700 mb-4">
+                            Rigorous academic programs, career guidance, and preparation for university admissions.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Details →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admissions Section: Call to action with prominent buttons and scroll-reveal -->
+        <section id="admissions" class="py-16 bg-indigo-700 text-white scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-6">Ready to Join SRVS Family?</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">
+                    We welcome prospective students and their families to explore the opportunities at SRVS National School.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center gap-6">
+                    <a href="#contact" class="bg-white text-indigo-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 inline-block">
+                        Apply Now
+                    </a>
+                    <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-indigo-700 font-bold py-3 px-8 rounded-full text-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 inline-block">
+                        Request Information
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Life @ SRVS Section: Grid of features with images, hover effects, and scroll-reveal -->
+        <section id="life-at-srvs" class="py-16 bg-gray-50 scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-indigo-800 mb-12">Life @ SRVS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Life Feature 1: Sports Programs -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover-effect">
+                        <img src="https://placehold.co/400x250/FFD700/FFFFFF?text=Sports" alt="Sports Activities" class="rounded-md mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-2">Vibrant Sports Programs</h3>
+                        <p class="text-gray-700">
+                            State-of-the-art sports facilities and dedicated coaches for various sports.
+                        </p>
+                    </div>
+                    <!-- Life Feature 2: Arts & Cultural Activities -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover-effect">
+                        <img src="https://placehold.co/400x250/ADFF2F/FFFFFF?text=Arts" alt="Arts and Culture" class="rounded-md mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-2">Arts & Cultural Activities</h3>
+                        <p class="text-gray-700">
+                            Encouraging creativity through music, dance, drama, and fine arts.
+                        </p>
+                    </div>
+                    <!-- Life Feature 3: Diverse Student Clubs -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover-effect">
+                        <img src="https://placehold.co/400x250/87CEEB/FFFFFF?text=Clubs" alt="Student Clubs" class="rounded-md mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-2">Diverse Student Clubs</h3>
+                        <p class="text-gray-700">
+                            A wide range of clubs to foster interests from science to debate.
+                        </p>
+                    </div>
+                    <!-- Life Feature 4: Community Service -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg card-hover-effect">
+                        <img src="https://placehold.co/400x250/FFB6C1/FFFFFF?text=Community" alt="Community Service" class="rounded-md mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-2">Community Service</h3>
+                        <p class="text-gray-700">
+                            Instilling social responsibility through various outreach programs.
+                        </p>
+                    </div>
+                     <!-- Life Feature 5: Modern Laboratories -->
+                     <div class="bg-white p-6 rounded-lg shadow-lg card-hover-effect">
+                        <img src="https://placehold.co/400x250/DDA0DD/FFFFFF?text=Labs" alt="Modern Labs" class="rounded-md mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-2">Modern Laboratories</h3>
+                        <p class="text-gray-700">
+                            Hands-on learning experience in fully equipped science and computer labs.
+                        </p>
+                    </div>
+                     <!-- Life Feature 6: Rich Digital Library -->
+                     <div class="bg-white p-6 rounded-lg shadow-lg card-hover-effect">
+                        <img src="https://placehold.co/400x250/ADD8E6/FFFFFF?text=Library" alt="Digital Library" class="rounded-md mb-4 w-full h-48 object-cover">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-2">Rich Digital Library</h3>
+                        <p class="text-gray-700">
+                            Access to a vast collection of books and digital resources for research.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- School Tour / Video Section: Embeds a video (placeholder) of the school tour -->
+        <section id="360-tour" class="py-16 bg-indigo-800 text-white scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold mb-8">Take a Virtual Tour of Our Campus!</h2>
+                <div class="video-container rounded-lg shadow-xl mx-auto max-w-4xl">
+                    <!-- Example YouTube embed. Replace `dQw4w9WgXcQ` with your actual YouTube video ID.
+                         Added `controls=0` to hide YouTube controls for a cleaner look, can be removed. -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=example&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <!-- Alternatively, for a self-hosted video: -->
+                    <!-- <video controls autoplay muted loop>
+                        <source src="[Your School Video URL - e.g., your-school-tour.mp4]" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video> -->
+                </div>
+                <p class="text-lg mt-8 max-w-2xl mx-auto">
+                    Experience our modern classrooms, sprawling playgrounds, and dedicated learning spaces from the comfort of your home.
+                </p>
+            </div>
+        </section>
+
+        <!-- News and Events Section: Displays recent news and events with cards and scroll-reveal -->
+        <section id="news-events" class="py-16 bg-white scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-indigo-800 mb-12">Latest News & Events</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- News Card 1: Annual Day -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover-effect text-left">
+                        <img src="https://placehold.co/400x200/F0F8FF/333333?text=Annual+Day" alt="Annual Day" class="rounded-md mb-4 w-full h-40 object-cover">
+                        <h3 class="text-xl font-semibold text-indigo-700 mb-2">Annual Day Celebration 2025</h3>
+                        <p class="text-gray-600 text-sm mb-3">June 15, 2025</p>
+                        <p class="text-gray-700 mb-4">
+                            Our students showcased their talents in a spectacular Annual Day event. Read more about the highlights.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Read More →</a>
+                    </div>
+                    <!-- News Card 2: Inter-School Science Fair -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover-effect text-left">
+                        <img src="https://placehold.co/400x200/FFFACD/333333?text=Science+Fair" alt="Science Fair" class="rounded-md mb-4 w-full h-40 object-cover">
+                        <h3 class="text-xl font-semibold text-indigo-700 mb-2">Inter-School Science Fair</h3>
+                        <p class="text-gray-600 text-sm mb-3">May 28, 2025</p>
+                        <p class="text-gray-700 mb-4">
+                            SRVS students bagged top honors at the district-level science fair. Discover their innovative projects.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Read More →</a>
+                    </div>
+                    <!-- News Card 3: Parenting Workshop -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover-effect text-left">
+                        <img src="https://placehold.co/400x200/E0FFFF/333333?text=Workshop" alt="Parent Workshop" class="rounded-md mb-4 w-full h-40 object-cover">
+                        <h3 class="text-xl font-semibold text-indigo-700 mb-2">Parenting Workshop: Digital Safety</h3>
+                        <p class="text-gray-600 text-sm mb-3">May 10, 2025</p>
+                        <p class="text-gray-700 mb-4">
+                            An insightful session for parents on ensuring digital safety for children.
+                        </p>
+                        <a href="#" class="text-indigo-600 hover:text-indigo-800 font-medium rounded-md">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section: Displays parent/alumni testimonials in a grid with hover effects and scroll-reveal -->
+        <section id="testimonials" class="py-16 bg-indigo-50 scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-indigo-800 mb-12">What Our Community Says</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg card-hover-effect">
+                        <p class="text-gray-700 italic mb-6">
+                            "SRVS National School has provided an exceptional learning environment for my child. The teachers are dedicated and the focus on holistic development is truly commendable."
+                        </p>
+                        <p class="font-semibold text-indigo-700">- Mrs. Priya Sharma, Parent</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg card-hover-effect">
+                        <p class="text-gray-700 italic mb-6">
+                            "The academic standards are high, and I've seen tremendous growth in my child's confidence and skills since joining SRVS. Highly recommended!"
+                        </p>
+                        <p class="font-semibold text-indigo-700">- Mr. Rahul Verma, Parent</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg card-hover-effect">
+                        <p class="text-gray-700 italic mb-6">
+                            "As an alumnus, I can confidently say that SRVS laid a strong foundation for my future. The values and knowledge I gained here are invaluable."
+                        </p>
+                        <p class="font-semibold text-indigo-700">- Ms. Anjali Devi, Alumnus</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section: Provides contact information and a contact form with a map embed -->
+        <section id="contact" class="py-16 bg-white scroll-reveal">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-indigo-800 mb-8">Contact Us</h2>
+                <p class="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+                    Have questions or want to schedule a visit? We'd love to hear from you.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-start gap-12">
+                    <div class="md:w-1/2 bg-gray-50 p-8 rounded-lg shadow-lg card-hover-effect text-left">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Get in Touch</h3>
+                        <p class="text-gray-700 mb-4">
+                            <span class="font-medium">Address:</span> SRVS National School, [Your School Address Here], Karaikal.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            <span class="font-medium">Phone:</span> +91-XXXX-XXXXXX
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            <span class="font-medium">Email:</span> <a href="mailto:info@srvskaraikal.in" class="text-indigo-600 hover:underline rounded-md">info@srvskaraikal.in</a>
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            <span class="font-medium">Working Hours:</span> Mon-Fri, 9:00 AM - 4:00 PM
+                        </p>
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4 mt-8">Location Map</h3>
+                        <div class="video-container rounded-lg">
+                            <!-- Google Maps embed code. Replace the `src` with your school's actual embedded map. -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15663.298782352277!2d79.84589098906963!3d10.923455986427383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5530ae9e2d3129%3A0xb12c2a0d1d2b70f!2sSRVS%20National%20School!5e0!3m2!1sen!2sin!4v1719047913437!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 bg-gray-50 p-8 rounded-lg shadow-lg card-hover-effect text-left">
+                        <h3 class="text-2xl font-semibold text-indigo-700 mb-4">Send Us a Message</h3>
+                        <form action="#" method="POST" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-1">Your Name</label>
+                                <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="John Doe" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-1">Your Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="john.doe@example.com" required>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 font-medium mb-1">Subject</label>
+                                <input type="text" id="subject" name="subject" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Inquiry about admissions">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-1">Your Message</label>
+                                <textarea id="message" name="message" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Type your message here..." required></textarea>
+                            </div>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-md shadow-lg transition duration-300 ease-in-out transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section: Provides quick links, contact info, and copyright -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-6 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- School Info Column -->
+                <div>
+                    <h3 class="text-2xl font-bold text-indigo-400 mb-4">SRVS National School</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Nurturing young minds to become responsible global citizens through quality education.
+                    </p>
+                    <div class="flex space-x-4 mt-4 justify-center md:justify-start">
+                        <!-- Placeholder social media icons (replace with actual SVG or Font Awesome if preferred) -->
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><img src="https://placehold.co/24/5A67D8/FFFFFF?text=F" alt="Facebook" class="w-6 h-6 rounded-full flex items-center justify-center text-xs"></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><img src="https://placehold.co/24/5A67D8/FFFFFF?text=X" alt="Twitter" class="w-6 h-6 rounded-full flex items-center justify-center text-xs"></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><img src="https://placehold.co/24/5A67D8/FFFFFF?text=I" alt="Instagram" class="w-6 h-6 rounded-full flex items-center justify-center text-xs"></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><img src="https://placehold.co/24/5A67D8/FFFFFF?text=Y" alt="YouTube" class="w-6 h-6 rounded-full flex items-center justify-center text-xs"></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Column -->
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#academics" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Academics</a></li>
+                        <li><a href="#admissions" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Admissions</a></li>
+                        <li><a href="#life-at-srvs" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Life @ SRVS</a></li>
+                        <li><a href="#news-events" class="text-gray-400 hover:text-white transition duration-300 rounded-md">News & Events</a></li>
+                        <li><a href="#policies" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Policies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info Column -->
+                <div>
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-4">Contact</h3>
+                    <p class="text-gray-400 mb-2">
+                        [Your School Address Here], Karaikal.
+                    </p>
+                    <p class="text-gray-400 mb-2">
+                        Phone: +91-XXXX-XXXXXX
+                    </p>
+                    <p class="text-gray-400 mb-2">
+                        Email: info@srvskaraikal.in
+                    </p>
+                </div>
+
+                 <!-- Explore More Column (visible only on large screens and up) -->
+                 <div class="hidden lg:block">
+                    <h3 class="text-xl font-semibold text-indigo-400 mb-4">Explore More</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#public-disclosure" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Public Disclosure</a></li>
+                        <li><a href="#srvs-family" class="text-gray-400 hover:text-white transition duration-300 rounded-md">SRVS Family</a></li>
+                        <li><a href="#elite-academy" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Elite Academy</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Careers</a></li>
+                        <li><a href="#360-tour" class="text-gray-400 hover:text-white transition duration-300 rounded-md">Virtual Tour</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+                © 2025 SRVS National School. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Mobile Menu Functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Function to toggle the mobile menu visibility and body scroll
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden'); // Toggles the 'hidden' class to show/hide the menu
+            document.body.classList.toggle('overflow-hidden'); // Prevents scrolling of the main content when the menu is open
+        }
+
+        // Event listeners for opening and closing the mobile menu
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+        closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // JavaScript for Scroll Reveal Animation
+        // Select all elements that should have the scroll-reveal effect
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+        // Create an Intersection Observer instance
+        // This observer will watch elements and add/remove the 'active' class when they enter/exit the viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // If the element is visible, add the 'active' class to trigger its animation
+                    entry.target.classList.add('active');
+                } else {
+                    // Optional: Remove 'active' class when element scrolls out of view.
+                    // This makes the animation replay if the user scrolls up and down.
+                    // If you want the animation to play only once, comment out the line below.
+                    // entry.target.classList.remove('active');
+                }
+            });
+        }, {
+            threshold: 0.2 // The animation will trigger when 20% of the element is visible in the viewport
+        });
+
+        // Observe each element with the 'scroll-reveal' class
+        scrollRevealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth Scrolling for all internal anchor links
+        // This provides a smooth scrolling experience when clicking on navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Check if the clicked anchor is part of a dropdown menu, and if so, don't prevent default
+                // This allows the dropdown link to navigate
+                if (!this.closest('.dropdown-menu') && !this.closest('.mobile-dropdown-menu')) {
+                    e.preventDefault(); // Prevent default jump behavior for top-level links
+                } else if (this.closest('.mobile-dropdown-menu')) {
+                     // For mobile dropdown links, still prevent default to handle smooth scroll before closing menu
+                    e.preventDefault();
+                }
+
+                // Scroll to the target element with a smooth animation
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) { // Only scroll if it's an internal anchor
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+
+                // Close mobile menu if it's open after clicking a link
+                if (!mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
+        // JavaScript for Mobile Dropdown Functionality
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+        mobileDropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const targetMenu = document.getElementById(targetId);
+                
+                // Close other open mobile dropdowns
+                document.querySelectorAll('.mobile-dropdown-menu.active').forEach(menu => {
+                    if (menu.id !== targetId) {
+                        menu.classList.remove('active');
+                        // Reset max-height for collapse animation
+                        menu.style.maxHeight = '0';
+                        menu.previousElementSibling.classList.remove('active'); // Remove active from toggle button
+                    }
+                });
+
+                // Toggle current dropdown
+                this.classList.toggle('active'); // Toggle class on the button itself for SVG rotation
+                targetMenu.classList.toggle('active');
+
+                // Set/reset max-height for smooth collapse/expand
+                if (targetMenu.classList.contains('active')) {
+                    targetMenu.style.maxHeight = targetMenu.scrollHeight + 'px'; // Set height to content height
+                } else {
+                    targetMenu.style.maxHeight = '0'; // Collapse
+                }
+            });
+        });
+    </script>
+</body>
+</html>
